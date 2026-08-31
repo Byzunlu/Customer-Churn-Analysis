@@ -35,11 +35,12 @@ SQLite veritabanı üç tablo içerir:
 - Jupyter Notebook
 
 ### Proje Yapısı
-```
+```   
+
 customer-churn-analysis/
 ├── churn_analysis.ipynb     # Ana analiz notebook'u
 ├── customer_churn.db        # SQLite veritabanı (dahil edildiyse)
-├── requirements.txt         # Python bağımlılıkları
+├── requirements.txt         # Python bağımlılıkları            
 ├── README.md                # İngilizce dosya
 └── README.tr.md             # Bu dosya (Türkçe)
 ```
