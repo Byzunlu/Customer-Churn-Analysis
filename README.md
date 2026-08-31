@@ -2,7 +2,6 @@
 
 *A SQLite + Python (pandas, numpy, matplotlib, seaborn) exploratory data analysis project investigating why customers cancel their subscriptions.*
 
-🇹🇷 Bu dosyanın Türkçe versiyonu için: [README.tr.md](README.tr.md)
 
 ---
 
@@ -40,8 +39,7 @@ customer-churn-analysis/
 ├── churn_analysis.ipynb     # Main analysis notebook
 ├── customer_churn.db        # SQLite database (if included)
 ├── requirements.txt         # Python dependencies
-├── README.md                # This file (English)
-└── README.tr.md             # Turkish version
+├── README.md                # This file (English-Turkish)
 ```
 
 ### How to Run
@@ -66,8 +64,69 @@ customer-churn-analysis/
 
 > **Note:** Make sure `customer_churn.db` is in the same folder as the notebook, since the code connects to it using a relative path.
 
-### Notes
-- If your database contains real customer data (names, personal info), consider **not** uploading it publicly, or anonymizing it first.
 
-### License
-This project is open source and available under the [MIT License](LICENSE).
+
+# Müşteri Kayıp (Churn) Analizi 📉
+
+*Müşterilerin abonelikleri neden iptal ettiğini inceleyen, SQLite ve Python (pandas, numpy, matplotlib, seaborn) kullanılarak yapılmış keşifsel veri analizi projesi.*
+---
+
+### Genel Bakış
+Bu proje, bir abonelik tabanlı işletmenin **müşteri kaybını (churn)** SQLite veritabanında (`customer_churn.db`) saklanan verileri kullanarak analiz eder. Analiz; müşteri, abonelik ve destek etkileşimi olmak üzere üç tabloyu bir araya getirerek churn (kayıp) örüntülerini incelemeyi, risk altındaki müşteri segmentlerini belirlemeyi ve gelir kaybını sayısallaştırmayı amaçlar.
+
+### Veri Seti
+SQLite veritabanı üç tablo içerir:
+
+| Tablo | Açıklama |
+|---|---|
+| `db_customer` | Müşteri demografik bilgileri: ID, isim, ülke, eyalet/il, cinsiyet, doğum tarihi, ilgi alanları |
+| `db_subscription` | Abonelik bilgileri: başlangıç/yenileme/iptal tarihleri, plan türü, sözleşme türü, aylık ücret, CLTV, churn skoru |
+| `db_support` | Destek etkileşimleri: şikayet tarihleri, eskalasyonlar, CSAT skoru, yorumlar |
+
+### Notebook İçeriği
+- `sqlite3` ve `pandas.read_sql` kullanılarak verinin doğrudan SQLite'tan yüklenmesi ve birleştirilmesi
+- Veri temizleme ve özellik türetme (örn. iptal tarihinden `churn_flag` oluşturma, müşteri başına şikayet sayısı hesaplama)
+- Genel ve plan türüne göre **churn oranı** hesaplaması
+- Kaybedilen müşterilerden kaynaklanan **risk altındaki gelir** tahmini
+- Eskalasyonlar, churn skoru ve churn arasındaki korelasyon analizi
+- Görselleştirmeler: zaman içinde churn trendi, eyalete göre churn oranı, korelasyon ısı haritaları, pairplot'lar ve kategorik karşılaştırmalar (plan türü, sözleşme türü, cinsiyet)
+- Plan türüne göre churn ve gelir özetleyen pivot tablolar
+
+### Kullanılan Teknolojiler
+- Python 3
+- SQLite (`sqlite3`)
+- pandas, numpy
+- matplotlib, seaborn
+- Jupyter Notebook
+
+### Proje Yapısı
+```
+customer-churn-analysis/
+├── churn_analysis.ipynb     # Ana analiz notebook'u
+├── customer_churn.db        # SQLite veritabanı (dahil edildiyse)
+├── requirements.txt         # Python bağımlılıkları
+├── README.md                # İngilizce-Türkçe dosya
+```
+
+### Nasıl Çalıştırılır
+1. Repoyu klonlayın:
+   ```bash
+   git clone https://github.com/<kullanici-adiniz>/customer-churn-analysis.git
+   cd customer-churn-analysis
+   ```
+2. (Opsiyonel) Sanal ortam oluşturun:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # Windows: venv\Scripts\activate
+   ```
+3. Gerekli paketleri kurun:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Jupyter'ı başlatıp notebook'u açın:
+   ```bash
+   jupyter notebook churn_analysis.ipynb
+   ```
+
+> **Not:** Notebook, `customer_churn.db` dosyasına göreli (relative) bir yol ile bağlandığı için veritabanı dosyasının notebook ile aynı klasörde olduğundan emin olun.
+
