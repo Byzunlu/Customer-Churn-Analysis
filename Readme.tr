@@ -6,6 +6,7 @@
 
 ---
 
+
 ### Genel Bakış
 Bu proje, bir abonelik tabanlı işletmenin **müşteri kaybını (churn)** SQLite veritabanında (`customer_churn.db`) saklanan verileri kullanarak analiz eder. Analiz; müşteri, abonelik ve destek etkileşimi olmak üzere üç tabloyu bir araya getirerek churn (kayıp) örüntülerini incelemeyi, risk altındaki müşteri segmentlerini belirlemeyi ve gelir kaybını sayısallaştırmayı amaçlar.
 
